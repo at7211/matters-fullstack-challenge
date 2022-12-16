@@ -1,24 +1,22 @@
 import { FC } from 'react'
 
-import { makeStyles } from '@mui/styles'
 import Container from '@mui/material/Container'
 import Header from './Header'
 import Loading from './Loading'
 
-const useStyles = makeStyles(() => ({
+const styles = {
   root: {
     minHeight: 'calc(100vh - 64px)',
     padding: '2rem',
   },
-}))
+} as const
 
 const Layout: FC = ({ children }) => {
-  const classes = useStyles()
   return (
     <>
       <Loading />
       <Header />
-      <Container className={classes.root}>{children}</Container>
+      <Container sx={styles.root}>{children}</Container>
     </>
   )
 }

@@ -3,18 +3,18 @@ import { FC } from 'react'
 import { useWallet } from '@context/wallet'
 import { ConnectorType } from '@lib/connector'
 
-import { makeStyles } from '@mui/styles'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import Modal from '@components/Modal'
 import IconImage from './IconImage'
+import { Box } from '@mui/material'
 
 interface WalletModalProps {
   open: boolean
   onClose: () => void
 }
 
-const useStyles = makeStyles(() => ({
+const styles = {
   imgWrapper: {
     width: '150px',
     height: '130px',
@@ -26,10 +26,9 @@ const useStyles = makeStyles(() => ({
     border: '1px solid #00949D',
     borderRadius: '10px',
   },
-}))
+} as const
 
 const WalletModal: FC<WalletModalProps> = ({ open, onClose }) => {
-  const classes = useStyles()
   const { connect } = useWallet()
 
   const handleMetamask = () => {
@@ -48,14 +47,14 @@ const WalletModal: FC<WalletModalProps> = ({ open, onClose }) => {
         Select Wallet
       </Typography>
       <Stack direction={{ xs: 'column', sm: 'row' }} spacing={4}>
-        <section className={classes.imgWrapper} onClick={handleMetamask}>
+        <Box sx={styles.imgWrapper} onClick={handleMetamask}>
           <IconImage src="/images/metamask.svg" size={70} />
           <Typography color="primary">Metamask</Typography>
-        </section>
-        <section className={classes.imgWrapper} onClick={handleWalletConnect}>
+        </Box>
+        <Box sx={styles.imgWrapper} onClick={handleWalletConnect}>
           <IconImage src="/images/walletConnect.svg" size={70} />
           <Typography color="primary">WalletConnect</Typography>
-        </section>
+        </Box>
       </Stack>
     </Modal>
   )

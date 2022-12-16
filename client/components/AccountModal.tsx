@@ -3,8 +3,7 @@ import { FC } from 'react'
 import { useWallet } from '@context/wallet'
 import { formatAddress } from '@lib/format'
 
-import { makeStyles } from '@mui/styles'
-import type { Theme } from '@mui/material'
+import { Box } from '@mui/material'
 import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
@@ -17,20 +16,19 @@ interface AccountModalProps {
   onClose: () => void
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
+const styles = {
   textButton: {
     display: 'flex',
     alignItems: 'center',
     width: '180px',
-    color: theme.palette.primary.main,
+    color: 'primary.main',
     cursor: 'pointer',
     height: '14px',
     fontSize: '14px',
   },
-}))
+} as const
 
 const AccountModal: FC<AccountModalProps> = ({ open, onClose }) => {
-  const classes = useStyles()
   const { account, disconnect } = useWallet()
   const copyText = useCopyText()
 
@@ -54,16 +52,20 @@ const AccountModal: FC<AccountModalProps> = ({ open, onClose }) => {
         </Button>
       </Stack>
       <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1}>
-        <section className={classes.textButton} onClick={() => (account ? copyText(account) : {})}>
+        <Box
+          component="section"
+          sx={styles.textButton}
+          onClick={() => (account ? copyText(account) : {})}
+        >
           <IconImage src="/images/copy.svg" size={15} />
           Copy Address
-        </section>
-        <section className={classes.textButton}>
+        </Box>
+        <Box component="section" sx={styles.textButton}>
           <a href={account ? `https://etherscan.io/address/${account}` : ''} target="_blank">
             <IconImage src="/images/link.svg" size={15} />
             View on Etherscan
           </a>
-        </section>
+        </Box>
       </Stack>
     </Modal>
   )

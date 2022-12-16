@@ -1,6 +1,5 @@
 import { FC, ReactNode } from 'react'
 
-import { makeStyles } from '@mui/styles'
 import Box from '@mui/material/Box'
 import ModalWrapper from '@mui/material/Modal'
 
@@ -10,7 +9,7 @@ interface ModalProps {
   children: ReactNode
 }
 
-const useStyles = makeStyles(() => ({
+const styles = {
   box: {
     position: 'absolute',
     top: '50%',
@@ -25,10 +24,9 @@ const useStyles = makeStyles(() => ({
     background: '#fff',
     borderRadius: '20px',
   },
-}))
+}
 
 const Modal: FC<ModalProps> = ({ open, onClose, children }) => {
-  const classes = useStyles()
   return (
     <ModalWrapper
       open={open}
@@ -36,7 +34,7 @@ const Modal: FC<ModalProps> = ({ open, onClose, children }) => {
       aria-labelledby="modal-title"
       aria-describedby="modal-description"
     >
-      <Box className={classes.box}>{children}</Box>
+      <Box sx={styles.box}>{children}</Box>
     </ModalWrapper>
   )
 }
