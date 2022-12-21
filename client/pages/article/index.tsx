@@ -1,10 +1,12 @@
 import BoxAnimation from '@components/BoxAnimation'
 import ContentBgImg from '@components/ContentBgImg'
 import Link from '@components/Link'
-import { Box, Button, Divider, Typography } from '@mui/material'
+import { Box, Button, Divider, Pagination, Stack, Typography } from '@mui/material'
 import type { Theme } from '@mui/material/styles'
 import Head from 'next/head'
 import Image from 'next/image'
+import { ARTICLE } from '../../core/graphql/queries/article'
+import useQuery from '../../lib/hooks/useQuery'
 
 const list: {
   img: string
@@ -95,6 +97,8 @@ const style = {
 }
 
 export default function ArticleList() {
+  const { data } = useQuery(ARTICLE)
+
   return (
     <>
       <Head>
@@ -145,6 +149,9 @@ export default function ArticleList() {
           })}
         </Box>
       </ContentBgImg>
+      <Stack spacing={2}>
+        <Pagination count={10} />
+      </Stack>
     </>
   )
 }

@@ -6,7 +6,6 @@ export class InjectedConnector {
   }
 
   private handleAccountsChanged = (accounts: string[]) => {
-    console.log({ accounts });
     Emitter.emit('UPDATE_ACCOUNT', accounts[0])
   }
 

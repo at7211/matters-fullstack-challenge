@@ -1,7 +1,7 @@
 import { useSnackbar } from "./useSnackbar";
 
 export const useShowError = () => {
-  const [showError] = useSnackbar('error');
+  const showError = useSnackbar('error');
 
   return showError
 }
