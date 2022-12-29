@@ -1,4 +1,6 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { AccountDto } from '@@core/account/dto/account';
+import { Account } from '@@core/account/models/account';
 
 @ObjectType('Article')
 export class ArticleDto {
@@ -14,6 +16,6 @@ export class ArticleDto {
   @Field(() => String)
   content: string;
 
-  @Field(() => String)
-  createdBy: string;
+  @Field(() => AccountDto)
+  createdBy: Account;
 }

@@ -21,6 +21,7 @@ specifiers:
   apollo-server-express: ^3.10.1
   class-transformer: ^0.5.1
   class-validator: ^0.13.2
+  dataloader: ^2.1.0
   dotenv: ^16.0.1
   eslint: ^8.22.0
   eslint-config-prettier: ^8.5.0
@@ -29,6 +30,7 @@ specifiers:
   ipfs: ^0.62.3
   jest: ^27.5.1
   lodash: ^4.17.21
+  nanoid: ^4.0.0
   orbit-db: ^0.28.6
   pg: ^8.8.0
   prettier: ^2.7.1
@@ -55,10 +57,12 @@ dependencies:
   apollo-server-express: 3.10.1_graphql@16.6.0
   class-transformer: 0.5.1
   class-validator: 0.13.2
+  dataloader: 2.1.0
   dotenv: 16.0.1
   graphql: 16.6.0
   ipfs: 0.62.3
   lodash: 4.17.21
+  nanoid: 4.0.0
   orbit-db: 0.28.6_ipfs@0.62.3
   pg: 8.8.0
   reflect-metadata: 0.1.13
@@ -4013,6 +4017,10 @@ packages:
       whatwg-mimetype: 2.3.0
       whatwg-url: 8.7.0
     dev: true
+
+  /dataloader/2.1.0:
+    resolution: {integrity: sha512-qTcEYLen3r7ojZNgVUaRggOI+KM7jrKxXeSHhogh/TWxYMeONEMqY+hmkobiYQozsGIyg9OYVzO4ZIfoB4I0pQ==}
+    dev: false
 
   /datastore-core/7.0.3:
     resolution: {integrity: sha512-DmPsUux63daOfCszxLkcp6LjdJ0k/BQNhIMtoAi5mbraYQnEQkFtKORmTu6XmDX6ujbtaBkeuJAiCBNI7MZklw==}
@@ -8715,6 +8723,12 @@ packages:
   /nanoid/3.3.4:
     resolution: {integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
+    hasBin: true
+    dev: false
+
+  /nanoid/4.0.0:
+    resolution: {integrity: sha512-IgBP8piMxe/gf73RTQx7hmnhwz0aaEXYakvqZyE302IXW3HyVNhdNGC+O2MwMAVhLEnvXlvKtGbtJf6wvHihCg==}
+    engines: {node: ^14 || ^16 || >=18}
     hasBin: true
     dev: false
 

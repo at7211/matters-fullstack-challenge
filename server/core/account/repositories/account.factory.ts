@@ -1,23 +1,22 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { plainToModel } from '@@common/misc/plain-to-instance';
 import { AccountDb } from '@@docstore/entities/account';
+import { ArticleFactory } from '@@core/article/repositories/article.factory';
 import { Account } from '../models/account';
-import { Article } from '@@core/article/models/article';
 
 @Injectable()
 export class AccountFactory {
+  @Inject(ArticleFactory)
+  private articleFactory: ArticleFactory;
+
   createAccount(accountDb: AccountDb) {
     const article = plainToModel(Account, {
       address: accountDb.address,
       articles: (accountDb.articles ?? []).map((articleDb) =>
-        plainToModel(Article, {
-          id: articleDb._id,
-          title: articleDb.title,
-          description: articleDb.description,
-          content: articleDb.content,
-          createdBy: articleDb.createdBy,
-        }),
+        this.articleFactory.createArticle(articleDb),
       ),
+      signedMessage: accountDb.signedMessage,
+      nonce: accountDb.nonce,
     });
 
     return article;

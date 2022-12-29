@@ -24,6 +24,16 @@ export class AccountRepo {
     return this.accountFactory.createAccount(accountDb);
   };
 
+  findByAddresses = async (addresses: string[]) => {
+    const accountDbs = await this.accountStore.query((address) =>
+      addresses.includes(address._id),
+    );
+
+    return accountDbs.map((accountDb) =>
+      this.accountFactory.createAccount(accountDb),
+    );
+  };
+
   updateByAddress = async (account: Account) => {
     await this.accountStore.put(account);
     return true;

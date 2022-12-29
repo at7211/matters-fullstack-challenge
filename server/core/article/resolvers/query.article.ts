@@ -3,8 +3,8 @@ import { Args, ID, ObjectType, Query, Resolver } from '@nestjs/graphql';
 import { ApolloError } from 'apollo-server-express';
 import { Paginated } from '@@common/graphql/paginated';
 import { PaginationArgs } from '@@common/graphql/dto/pagination-args';
-import { ArticleDto } from '../../dto/article';
-import { ArticleRepo } from '../../repositories/article.repo';
+import { ArticleDto } from '../dto/article';
+import { ArticleRepo } from '../repositories/article.repo';
 
 @ObjectType()
 class ArticlePage extends Paginated(ArticleDto) {}

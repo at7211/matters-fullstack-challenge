@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
-import { AccountDb } from 'docstore/entities/account';
-import { DbService } from '../../src/orbit-db.service';
 import { AccountRepo } from './repositories/account.repo';
 import { AccountResolver } from './resolvers/query.account';
 import { AccountFactory } from './repositories/account.factory';
+import { AccountLoader } from './services/account-loader';
 
 @Module({
-  providers: [AccountFactory, AccountRepo, AccountResolver],
-  exports: [AccountRepo],
+  imports: [AccountModule],
+  providers: [AccountFactory, AccountRepo, AccountResolver, AccountLoader],
+  exports: [AccountRepo, AccountLoader],
 })
 export class AccountModule {}

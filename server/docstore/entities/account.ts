@@ -8,4 +8,10 @@ export class AccountDb {
 
   @Column(() => ArticleDb)
   articles: ArticleDb[];
+
+  @Column('varchar', { nullable: true })
+  signedMessage: string | null;
+
+  @Column('varchar', { nullable: true })
+  nonce: string | null;
 }
